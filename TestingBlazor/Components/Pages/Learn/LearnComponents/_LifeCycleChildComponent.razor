@@ -1,0 +1,26 @@
+﻿
+<hr />
+@foreach (var item in EventType)
+{
+    <p>@item</p>
+    <hr />
+}
+
+@code {
+    [Parameter]
+    public int CountValue { get; set; }
+
+    List<string> EventType = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        EventType.Add("OnInitialized - CHILD is called");
+    }
+
+    protected override void OnParametersSet()
+    {
+        EventType.Add("OnParametersSet - CHILD is called");
+    }
+
+
+}

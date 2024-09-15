@@ -1,0 +1,34 @@
+﻿@page "/learn/parentcomponent"
+
+
+<h3>ParentComponent</h3>
+<CascadingValue Value="@MessageForGrandChild" Name="Message">
+    <CascadingValue Value="@LuckyNumber" Name="LuckyNumber">
+        <_ChildComponent />
+        <_ChildComponent @ref="childComp" OnButtonClick="ShowMessage"
+                         Title="This title is passed as a parameter from parent component">
+            Some text between the tags from the parent component!!
+        </_ChildComponent>
+    </CascadingValue>
+</CascadingValue>
+<p>@messageText</p>
+
+<div class="row">
+    <button class="btn btn-success m-2" style="width:200px" @onclick="()=>childComp.ToastrSuccess()">Toastr Success</button>
+</div>
+
+
+@code {
+    private _ChildComponent childComp;
+    private string MessageForGrandChild = "This message is passed from Parent Component to Grand Child";
+    private string LuckyNumber = "7";
+    public string messageText = string.Empty;
+
+    private void ShowMessage()
+    {
+        messageText = "Button inside child component was clicked";
+    }
+
+
+
+}
